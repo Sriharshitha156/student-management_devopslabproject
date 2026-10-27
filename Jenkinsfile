@@ -1,9 +1,5 @@
-pipeline {
+﻿pipeline {
     agent any
-
-    tools {
-        nodejs 'node18'   // Manage Jenkins > Tools > NodeJS installations (name must match)
-    }
 
     environment {
         IMAGE_NAME = 'student-management'
@@ -15,13 +11,13 @@ pipeline {
             steps { checkout scm }
         }
         stage('Install') {
-            steps { sh 'npm ci' }
+            steps { bat 'npm ci' }
         }
         stage('Test') {
-            steps { sh 'npm test' }
+            steps { bat 'npm test' }
         }
         stage('Docker Build') {
-            steps { sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG -t $IMAGE_NAME:latest .' }
+            steps { bat 'docker build -t %IMAGE_NAME%:%IMAGE_TAG% -t %IMAGE_NAME%:latest .' }
         }
     }
 
