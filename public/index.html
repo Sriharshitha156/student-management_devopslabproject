@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Management</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+    input, button { padding: .5rem; margin: .25rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border-bottom: 1px solid #ccc; padding: .5rem; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>Student Management</h1>
+  <div>
+    <input id="name" placeholder="Name">
+    <input id="course" placeholder="Course">
+    <input id="year" type="number" placeholder="Year" min="1" max="4">
+    <button onclick="addStudent()">Add</button>
+  </div>
+  <table>
+    <thead><tr><th>ID</th><th>Name</th><th>Course</th><th>Year</th><th></th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <script>
+    async function load() {
+      const res = await fetch('/api/students');
+      const list = await res.json();
+      document.getElementById('rows').innerHTML = list.map(s =>
+        `<tr><td>${s.id}</td><td>${s.name}</td><td>${s.course}</td><td>${s.year}</td>
+         <td><button onclick="del(${s.id})">Delete</button></td></tr>`).join('');
+    }
+    async function addStudent() {
+      const body = {
+        name: document.getElementById('name').value,
+        course: document.getElementById('course').value,
+        year: Number(document.getElementById('year').value) || 1
+      };
+      await fetch('/api/students', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+      load();
+    }
+    async function del(id) { await fetch('/api/students/' + id, { method: 'DELETE' }); load(); }
+    load();
+  </script>
+</body>
+</html>
