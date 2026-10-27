@@ -12,8 +12,8 @@ Repository: https://github.com/Sriharshitha156/student-management_devopslabproje
 | 2 | Git and GitHub | Done |
 | 3 | Jenkins CI job | Done |
 | 4 | Docker (Dockerfile, image, container) | Done |
-| 5 | Kubernetes (Deployment + Service) | Pending |
-| 6 | Automated Testing (Jest + Supertest) | Tests written and running in Jenkins; final write-up pending |
+| 5 | Kubernetes (Deployment + Service) | Done |
+| 6 | Automated Testing (Jest + Supertest) | Done |
 
 ## Tech Stack
 
@@ -138,17 +138,38 @@ Commands:
 
 Result: the app runs inside a container at http://localhost:3000.
 
-## Task 5: Kubernetes (Pending)
+## Task 5: Kubernetes (Done)
 
-Planned steps:
+The app runs on the Kubernetes cluster built into Docker Desktop.
 
-1. Start Minikube and build the image inside it.
-2. Apply k8s/deployment.yaml (2 replicas) and k8s/service.yaml (NodePort).
-3. Open the app through the Service URL.
+- k8s/deployment.yaml: a Deployment that runs 2 replicas of the student-management:latest image, with a readiness probe on /health. imagePullPolicy is IfNotPresent so the local image is used.
+- k8s/service.yaml: a NodePort Service that sends traffic from port 30080 to port 3000 of the pods.
 
-## Task 6: Automated Testing (in progress)
+Steps:
 
-Framework: Jest + Supertest (a REST API testing setup for Node.js).
+1. Enabled Kubernetes in Docker Desktop (Settings, Kubernetes, Create cluster).
+2. Checked that the node was Ready.
+3. Applied the Deployment and the Service.
+4. Checked the pods and the Service, then opened the app in the browser.
+5. Scaled the Deployment and deleted a pod to show that Kubernetes replaces it automatically.
+
+Commands:
+
+    kubectl get nodes
+    kubectl apply -f k8s/deployment.yaml
+    kubectl apply -f k8s/service.yaml
+    kubectl get deployments
+    kubectl get pods
+    kubectl get svc
+    kubectl scale deployment student-management --replicas=3
+    kubectl delete pod <pod-name>
+    kubectl logs deployment/student-management
+
+Result: 2 pods are Running (1/1) and the app opens at http://localhost:30080.
+
+## Task 6: Automated Testing (Done)
+
+Framework: Jest + Supertest, a standard REST API testing setup for Node.js.
 
 Test cases in tests/student.test.js:
 
@@ -156,10 +177,14 @@ Test cases in tests/student.test.js:
 2. POST /api/students creates a student and returns 201.
 3. POST /api/students with missing fields returns 400.
 4. GET /api/students/:id with an unknown id returns 404.
-5. DELETE /api/students/:id removes a student.
+5. DELETE /api/students/:id removes a student, and a later GET returns 404.
 
 Run the tests:
 
     npm test
 
-Result: 5 tests pass locally and in the Jenkins Test stage.
+Result: 5 of 5 tests pass locally and in the Test stage of the Jenkins pipeline.
+
+## Pipeline Summary
+
+Code is pushed to GitHub, Jenkins checks it out, installs the dependencies, runs the tests and builds the Docker image, and Kubernetes runs the containerised app.
