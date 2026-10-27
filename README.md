@@ -79,3 +79,5 @@ Open http://localhost:3000
 - Finish the Jenkins pipeline and enable automatic builds
 - Build and run the Docker image
 - Deploy to Kubernetes using a Deployment and a NodePort Service
+
+Jenkins auto build test
