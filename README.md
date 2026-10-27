@@ -4,3 +4,5 @@ Node.js + Express app with Git, Jenkins, Docker, Kubernetes and Jest/Supertest t
     npm install
     npm test
     npm start        # http://localhost:3000
+
+This project is part of a DevOps assignment.
