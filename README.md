@@ -1,4 +1,4 @@
-﻿# Student Management Application: DevOps Lab Project
+# Student Management Application: DevOps Lab Project
 
 A simple Student Management app built with Node.js and Express, used to practise a complete DevOps workflow: Git/GitHub, Jenkins, Docker, Kubernetes and automated testing.
 
@@ -8,7 +8,7 @@ A simple Student Management app built with Node.js and Express, used to practise
 |---|------|--------|
 | 1 | Application Development (Node.js + Express) | Done |
 | 2 | Git and GitHub | Done |
-| 3 | Jenkins CI job | In progress |
+| 3 | Jenkins CI job | Done |
 | 4 | Docker (Dockerfile, image, container) | Pending |
 | 5 | Kubernetes (Deployment + Service) | Pending |
 | 6 | Automated Testing (Jest + Supertest) | Tests written, 5 passing locally; will run in Jenkins |
