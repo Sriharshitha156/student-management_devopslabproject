@@ -17,7 +17,7 @@ pipeline {
             steps { bat 'npm test' }
         }
         stage('Docker Build') {
-            steps { bat 'docker build -t %IMAGE_NAME%:%IMAGE_TAG% -t %IMAGE_NAME%:latest .' }
+            steps { bat '"C:/Users/P SRIHARSHITHA/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe" build -t %IMAGE_NAME%:%IMAGE_TAG% -t %IMAGE_NAME%:latest .' }
         }
     }
 
