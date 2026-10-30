@@ -96,13 +96,12 @@ Commands:
     git push
     git log --oneline
 
-![Git push](screenshots/02-git-push.png)
 
-![Git branch, merge and log](screenshots/03-git-branch-merge-log.png)
+![Git branch, merge and log](https://github.com/user-attachments/assets/d0bd65e4-3ec4-4e98-8fb8-fb60b9eee6cb)
 
 Result: the code is on GitHub and git log --oneline shows the commit history.
 
-![GitHub repository](screenshots/04-github-repo.png)
+![GitHub repository](https://github.com/user-attachments/assets/036026f7-b24b-45a5-aa18-5c9fc00eb081)
 
 ## Task 3: Jenkins (Done)
 
@@ -114,7 +113,7 @@ Steps:
 4. Enabled Poll SCM with H/2 * * * * so a push starts a build automatically.
 5. Clicked Build Now and checked the Console Output.
 
-![Jenkins job configuration](screenshots/05-jenkins-config.png)
+![Jenkins job configuration](https://github.com/user-attachments/assets/794efde6-57cb-41da-91ae-ef8bfd2dafd8)
 
 Pipeline stages (defined in the Jenkinsfile): Checkout, Install (npm ci), Test (npm test) and Docker Build (docker build). The Jenkinsfile uses bat commands because Jenkins runs on Windows.
 
@@ -126,11 +125,11 @@ Problems fixed:
 
 Result: all stages are green and the console ends with Finished: SUCCESS. A push to GitHub starts a new build automatically.
 
-![Jenkins stage view](screenshots/06-jenkins-stage-view.png)
+![Jenkins stage view](https://github.com/user-attachments/assets/9762c37c-cd94-41a3-9c25-a95dc5d0c119)
 
-![Jenkins console output](screenshots/07-jenkins-console.png)
+![Jenkins console output](https://github.com/user-attachments/assets/7f88737e-a78f-40b9-9500-359e435fc5e8)
 
-![Jenkins automatic build](screenshots/08-jenkins-auto-build.png)
+
 
 ## Task 4: Docker (Done)
 
@@ -158,7 +157,7 @@ Commands:
 
 Result: the app runs inside a container at http://localhost:3000.
 
-![App running in Docker](screenshots/11-docker-browser.png)
+![App running in Docker](https://github.com/user-attachments/assets/cb5e290a-49e3-4a7b-8558-483230844eba>)
 
 ## Task 5: Kubernetes (Done)
 
@@ -195,7 +194,7 @@ Commands:
 
 Result: 2 pods are Running (1/1) and the app opens at http://localhost:30080.
 
-![App running on Kubernetes](screenshots/15-k8s-browser.png)
+![App running on Kubernetes](https://github.com/user-attachments/assets/b373be2a-0e38-4a86-b6c5-1973e882bb00)
 
 ## Task 6: Automated Testing (Done)
 
@@ -217,7 +216,7 @@ Run the tests:
 
 Result: 5 of 5 tests pass locally and in the Test stage of the Jenkins pipeline.
 
-![Tests in Jenkins](screenshots/17-jenkins-test-stage.png)
+![Tests in Jenkins](https://github.com/user-attachments/assets/7ba8440c-9744-4a7a-a18b-9d9265127e27)
 
 ## Pipeline Summary
 
