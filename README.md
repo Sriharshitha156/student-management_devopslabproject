@@ -22,7 +22,7 @@ Repository: https://github.com/Sriharshitha156/student-management_devopslabproje
 - Git and GitHub
 - Jenkins (Windows service)
 - Docker Desktop
-- Kubernetes (Minikube)
+- Kubernetes (Docker Desktop)
 
 ## Project Structure
 
@@ -66,6 +66,8 @@ Commands:
 
 Result: the app runs at http://localhost:3000. Students can be added and deleted from the page, and the API returns JSON at /api/students.
 
+![App running](https://github.com/user-attachments/assets/baabe0cf-c91c-49ab-844b-5805ebd962ac)
+
 Note: students are stored in memory, so the list resets when the app restarts.
 
 ## Task 2: Git and GitHub (Done)
@@ -94,7 +96,13 @@ Commands:
     git push
     git log --oneline
 
+![Git push](screenshots/02-git-push.png)
+
+![Git branch, merge and log](screenshots/03-git-branch-merge-log.png)
+
 Result: the code is on GitHub and git log --oneline shows the commit history.
+
+![GitHub repository](screenshots/04-github-repo.png)
 
 ## Task 3: Jenkins (Done)
 
@@ -106,6 +114,8 @@ Steps:
 4. Enabled Poll SCM with H/2 * * * * so a push starts a build automatically.
 5. Clicked Build Now and checked the Console Output.
 
+![Jenkins job configuration](screenshots/05-jenkins-config.png)
+
 Pipeline stages (defined in the Jenkinsfile): Checkout, Install (npm ci), Test (npm test) and Docker Build (docker build). The Jenkinsfile uses bat commands because Jenkins runs on Windows.
 
 Problems fixed:
@@ -115,6 +125,12 @@ Problems fixed:
 - Jenkins failed with "docker is not recognized" because the Jenkins service does not have Docker in its PATH. Used the full path to docker.exe inside the Jenkinsfile.
 
 Result: all stages are green and the console ends with Finished: SUCCESS. A push to GitHub starts a new build automatically.
+
+![Jenkins stage view](screenshots/06-jenkins-stage-view.png)
+
+![Jenkins console output](screenshots/07-jenkins-console.png)
+
+![Jenkins automatic build](screenshots/08-jenkins-auto-build.png)
 
 ## Task 4: Docker (Done)
 
@@ -136,7 +152,13 @@ Commands:
     docker logs student-app
     curl.exe http://localhost:3000/api/students
 
+![Docker build](https://github.com/user-attachments/assets/955c2fba-5298-4d22-9289-e65d9cb99c20)
+
+![Docker images and containers](https://github.com/user-attachments/assets/1977d3ba-5173-412c-991d-36da27c803dd)
+
 Result: the app runs inside a container at http://localhost:3000.
+
+![App running in Docker](screenshots/11-docker-browser.png)
 
 ## Task 5: Kubernetes (Done)
 
@@ -153,6 +175,8 @@ Steps:
 4. Checked the pods and the Service, then opened the app in the browser.
 5. Scaled the Deployment and deleted a pod to show that Kubernetes replaces it automatically.
 
+![Kubernetes cluster ready](https://github.com/user-attachments/assets/e61a0b71-c65e-45ee-86c5-280b86a379e9)
+
 Commands:
 
     kubectl get nodes
@@ -165,7 +189,13 @@ Commands:
     kubectl delete pod <pod-name>
     kubectl logs deployment/student-management
 
+![Kubernetes deployment, pods and service](https://github.com/user-attachments/assets/9566dc36-7d6a-4505-8fba-5531d4d5b11c)
+
+![Kubernetes self-healing](https://github.com/user-attachments/assets/25460bee-dd72-4560-b7ad-de6e279d562a)
+
 Result: 2 pods are Running (1/1) and the app opens at http://localhost:30080.
+
+![App running on Kubernetes](screenshots/15-k8s-browser.png)
 
 ## Task 6: Automated Testing (Done)
 
@@ -183,7 +213,11 @@ Run the tests:
 
     npm test
 
+![Test results](https://github.com/user-attachments/assets/d4ed5cd3-c174-42ff-9543-c27b2a13b522)
+
 Result: 5 of 5 tests pass locally and in the Test stage of the Jenkins pipeline.
+
+![Tests in Jenkins](screenshots/17-jenkins-test-stage.png)
 
 ## Pipeline Summary
 
